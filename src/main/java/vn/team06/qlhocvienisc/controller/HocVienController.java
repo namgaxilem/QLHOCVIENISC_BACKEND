@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,15 +26,20 @@ import vn.team06.qlhocvienisc.service.HocVienService;
 public class HocVienController {
 	@Autowired
 	HocVienService hocvienService;
-	@RequestMapping(value = "/hocvien")
+	@RequestMapping(value = "/hocvien",
+			method = RequestMethod.GET)
     public List<HocVien> hocvien() {
         return hocvienService.getAll();
     }
  
-    @RequestMapping(value = "/hocvien", method = RequestMethod.POST)
-    public HocVien createHocvien(@Valid @RequestBody HocVien hocvien)
+    @RequestMapping(value = "/themhocvien", 
+    		method = RequestMethod.POST,
+    		produces = { MediaType.APPLICATION_JSON_VALUE,
+					MediaType.APPLICATION_XML_VALUE })
+    public boolean createHocvien(@Valid @RequestBody HocVien hocvien)
     {
-        return hocvienService.createHocvien(hocvien);
+    	hocvienService.createHocvien(hocvien);
+        return true;
     }
  
     @RequestMapping(value = "/hocvien/{id}", method = RequestMethod.DELETE)
@@ -53,10 +59,10 @@ public class HocVienController {
                         @RequestParam(defaultValue = "0") Integer pageNo,
                         @RequestParam(defaultValue = "2") Integer pageSize,
                         @RequestParam(defaultValue = "1") int typeSort,
-                        @RequestParam(defaultValue = "ISC09") String maKH,
+                        @RequestParam(defaultValue = "ISC09") String makhoahoc,
                         @RequestParam(defaultValue = "MAHV") String sortBy)
     {
-        List<HocVien> list = hocvienService.getAllHocVien(pageNo, pageSize, typeSort, maKH, sortBy);
+        List<HocVien> list = hocvienService.getAllHocVien(pageNo, pageSize, typeSort, makhoahoc, sortBy);
  
         return new ResponseEntity<List<HocVien>>(list, new HttpHeaders(), HttpStatus.OK);
     }

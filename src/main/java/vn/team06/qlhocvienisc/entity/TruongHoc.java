@@ -32,7 +32,9 @@ public class TruongHoc {
 		SDT = sDT;
 	}
 
-	@OneToMany(mappedBy = "truonghoc", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "truonghoc",
+			
+			fetch = FetchType.EAGER)
     private Set<HocVien> hocvien;
 	
 

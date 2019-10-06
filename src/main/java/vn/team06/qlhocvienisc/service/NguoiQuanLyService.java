@@ -43,14 +43,9 @@ public class NguoiQuanLyService {
             nql.setTEN(nguoiquanly.getTEN());
             nql.setNGAYSINH(nguoiquanly.getNGAYSINH());
             nql.setGIOITINH(nguoiquanly.getGIOITINH());
-            nql.setNOISINH(nguoiquanly.getNOISINH());
-            nql.setCMND(nguoiquanly.getCMND());
             nql.setSDT(nguoiquanly.getSDT());
             nql.setEMAIL(nguoiquanly.getEMAIL());
             nql.setDIACHI(nguoiquanly.getDIACHI());
-            nql.setLUONG(nguoiquanly.getLUONG());
-            nql.setHSLUONG(nguoiquanly.getHSLUONG());
-            nql.setNGAYVAOLAM(nguoiquanly.getNGAYVAOLAM());
             nql.setPASSWORD(nguoiquanly.getPASSWORD());
             nql.setACCOUNTTYPE(nguoiquanly.getACCOUNTTYPE());
             updatedNQL = nguoiquanlyRepository.save(nql);

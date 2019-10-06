@@ -42,8 +42,6 @@ public class HocVienService {
             sv.setTEN(hocvien.getTEN());
             sv.setGIOITINH(hocvien.getGIOITINH());
             sv.setNGAYSINH(hocvien.getNGAYSINH());
-            sv.setNOISINH(hocvien.getNOISINH());
-            sv.setCMND(hocvien.getCMND());
             sv.setSDT(hocvien.getSDT());
             sv.setEMAIL(hocvien.getEMAIL());
             sv.setDIACHI(hocvien.getDIACHI());
@@ -91,7 +89,7 @@ public class HocVienService {
     	  {
     		  Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(Sort.Direction.DESC, sortBy));
     		   
-              Page<HocVien> pagedResult = hocvienRepository.findAll(paging);
+              Page<HocVien> pagedResult = hocvienRepository.findCourse(maKH,paging);
                
               if(pagedResult.hasContent()) {
                   return pagedResult.getContent();

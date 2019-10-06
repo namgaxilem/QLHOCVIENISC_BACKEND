@@ -35,12 +35,6 @@ public class CanBoGiangVien {
 	private Date NGAYSINH;
 	
 	@Column(nullable = true)
-	private String NOISINH;
-	
-	@Column(nullable = true)
-	private int CMND;
-	
-	@Column(nullable = true)
 	private int SDT;
 	
 	@Column(nullable = true)
@@ -48,15 +42,6 @@ public class CanBoGiangVien {
 	
 	@Column(nullable = true)
 	private String DIACHI;
-	
-	@Column(nullable = true)
-	private int LUONG;
-	
-	@Column(nullable = true)
-	private int HSLUONG;
-	
-	@Column(nullable = true)
-	private Date NGAYVAOLAM;
 	
 	@Column(nullable = true)
 	private String PASSWORD;
@@ -137,22 +122,6 @@ public class CanBoGiangVien {
 		NGAYSINH = nGAYSINH;
 	}
 
-	public String getNOISINH() {
-		return NOISINH;
-	}
-
-	public void setNOISINH(String nOISINH) {
-		NOISINH = nOISINH;
-	}
-
-	public int getCMND() {
-		return CMND;
-	}
-
-	public void setCMND(int cMND) {
-		CMND = cMND;
-	}
-
 	public int getSDT() {
 		return SDT;
 	}
@@ -175,30 +144,6 @@ public class CanBoGiangVien {
 
 	public void setDIACHI(String dIACHI) {
 		DIACHI = dIACHI;
-	}
-
-	public int getLUONG() {
-		return LUONG;
-	}
-
-	public void setLUONG(int lUONG) {
-		LUONG = lUONG;
-	}
-
-	public int getHSLUONG() {
-		return HSLUONG;
-	}
-
-	public void setHSLUONG(int hSLUONG) {
-		HSLUONG = hSLUONG;
-	}
-
-	public Date getNGAYVAOLAM() {
-		return NGAYVAOLAM;
-	}
-
-	public void setNGAYVAOLAM(Date nGAYVAOLAM) {
-		NGAYVAOLAM = nGAYVAOLAM;
 	}
 
 	public String getPASSWORD() {

@@ -1,13 +1,16 @@
 package vn.team06.qlhocvienisc.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "DOANHNGHIEP")
 public class DoanhNghiep {
-	@Id 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false)
 	private int ID;
 	

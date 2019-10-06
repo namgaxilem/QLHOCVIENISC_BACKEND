@@ -20,43 +20,73 @@ public class HocVien {
 	@Id 
 	@Column(columnDefinition = "LONGVARBINARY")
 	private String MAHV;
-	
+	@Column(nullable = true)
 	private String HO;
-	
+	@Column(nullable = true)
 	private String TENLOT;
-	
+	@Column(nullable = true)
 	private String TEN;
-	
+	@Column(nullable = true)
 	private String GIOITINH;
-	
-	private Date NGAYSINH;
-	
-	private String NOISINH;
-	
-	private int CMND;
-	
+	@Column(nullable = true)
+	private Date NGAYSINH;	
+	@Column(nullable = true)
 	private int SDT;
-	
+	@Column(nullable = true)
 	private String EMAIL;
-	
+	@Column(nullable = true)
 	private String DIACHI;
-	
+	@Column(nullable = true)
 	private String PASSWORD;
-	
+	@Column(nullable = true)
 	private Date TGCOTHEDILAM;
 	
+	@Column(nullable = true)
 	private String MATRUONG;
 	
+	@Column(nullable = true)
 	private String MAKHOAHOC;
 	
+	@Column(nullable = true)
 	private String ACCOUNTTYPE;
 	
+	@Column(nullable = true)
 	private String TYPE;
 	
+	@Column(nullable = true)
 	private String ANHDAIDIEN;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="MATRUONG",insertable=false, updatable=false)
+    private TruongHoc truonghoc;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="MAKHOAHOC", insertable=false, updatable=false)
+    private KhoaHoc khoahoc;
 
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="ACCOUNTTYPE", insertable=false, updatable=false)
+    private LoaiTaiKhoan loaitaikhoan;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="TYPE", insertable=false, updatable=false)
+    private DanhMucHocVien danhmuchocvien;
+	
+	@OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "hocvien")
+	@Column(nullable = true)
+	//@JsonManagedReference
+    private List<HoSo> hoso;
+	
+	@OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "hocvien")
+	@Column(nullable = true)
+	//@JsonManagedReference
+    private List<DiemMonHoc> diemmonhoc;
+	
+	@OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "hocvien")
+	@Column(nullable = true)
+	//@JsonManagedReference
+    private List<GopY> gopy;
+	
 	public String getANHDAIDIEN() {
 		return ANHDAIDIEN;
 	}
@@ -80,25 +110,6 @@ public class HocVien {
 	public void setDanhmuchocvien(DanhMucHocVien danhmuchocvien) {
 		this.danhmuchocvien = danhmuchocvien;
 	}
-
-
-	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="MATRUONG",insertable=false, updatable=false)
-    private TruongHoc truonghoc;
-	
-	
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="MAKHOAHOC", insertable=false, updatable=false)
-    private KhoaHoc khoahoc;
-
-	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="ACCOUNTTYPE", insertable=false, updatable=false)
-    private LoaiTaiKhoan loaitaikhoan;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="TYPE", insertable=false, updatable=false)
-    private DanhMucHocVien danhmuchocvien;
 
 	public String getMATRUONG() {
 		return MATRUONG;
@@ -131,25 +142,6 @@ public class HocVien {
 	public void setTYPE(String tYPE) {
 		TYPE = tYPE;
 	}
-
-	@OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "hocvien")
-	@Column(nullable = true)
-	@JsonManagedReference
-    private List<HoSo> hoso;
-	
-	@OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "hocvien")
-	@Column(nullable = true)
-	@JsonManagedReference
-    private List<DiemMonHoc> diemmonhoc;
-	
-	@OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "hocvien")
-	@Column(nullable = true)
-	@JsonManagedReference
-    private List<GopY> gopy;
-	
-	
-	
-	
 
 	public String getMAHV() {
 		return MAHV;
@@ -199,22 +191,6 @@ public class HocVien {
 		NGAYSINH = nGAYSINH;
 	}
 
-	public String getNOISINH() {
-		return NOISINH;
-	}
-
-	public void setNOISINH(String nOISINH) {
-		NOISINH = nOISINH;
-	}
-
-	public int getCMND() {
-		return CMND;
-	}
-
-	public void setCMND(int cMND) {
-		CMND = cMND;
-	}
-
 	public int getSDT() {
 		return SDT;
 	}
@@ -254,8 +230,6 @@ public class HocVien {
 	public void setTGCOTHEDILAM(Date tGCOTHEDILAM) {
 		TGCOTHEDILAM = tGCOTHEDILAM;
 	}
-
-	
 
 	public List<HoSo> getHoso() {
 		return hoso;

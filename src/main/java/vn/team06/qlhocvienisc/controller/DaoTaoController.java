@@ -40,7 +40,8 @@ public class DaoTaoController {
     }
  
     @RequestMapping(value = "/daotao/{id}/{id2}", method = RequestMethod.DELETE)
-    public ResponseEntity<Object> deleteDaoTao(@PathVariable(value = "id") String id, @PathVariable(value = "id2") Integer id2) 
+    public ResponseEntity<Object> deleteDaoTao(@PathVariable(value = "id") String id, 
+    		@PathVariable(value = "id2") Integer id2) 
     {
 		return daotaoService.deleteDaoTao(id, id2);
     }

@@ -38,7 +38,6 @@ public class ThongBaoController {
     @ResponseBody
     public ThongBao createThongBao(@Valid @RequestBody ThongBao thongbao)
     {
-    	System.out.print(thongbao);
         return thongbaoService.createThongBao(thongbao);
     }
  

@@ -28,22 +28,12 @@ public class NguoiQuanLy {
 
 	private String EMAIL;
 	
-	private Date NGAYSINH;
-	
-	private String NOISINH;
-	
-	private int CMND;
+	private Date NGAYSINH;	
 	
 	private int SDT;
 	
 	private String DIACHI;
-	
-	private int LUONG;
-	
-	private int HSLUONG;
-	
-	private Date NGAYVAOLAM;
-	
+		
 	private String PASSWORD;
 	
 	private int ACCOUNTTYPE;
@@ -108,22 +98,6 @@ public class NguoiQuanLy {
 		NGAYSINH = nGAYSINH;
 	}
 
-	public String getNOISINH() {
-		return NOISINH;
-	}
-
-	public void setNOISINH(String nOISINH) {
-		NOISINH = nOISINH;
-	}
-
-	public int getCMND() {
-		return CMND;
-	}
-
-	public void setCMND(int cMND) {
-		CMND = cMND;
-	}
-
 	public int getSDT() {
 		return SDT;
 	}
@@ -138,30 +112,6 @@ public class NguoiQuanLy {
 
 	public void setDIACHI(String dIACHI) {
 		DIACHI = dIACHI;
-	}
-
-	public int getLUONG() {
-		return LUONG;
-	}
-
-	public void setLUONG(int lUONG) {
-		LUONG = lUONG;
-	}
-
-	public int getHSLUONG() {
-		return HSLUONG;
-	}
-
-	public void setHSLUONG(int hSLUONG) {
-		HSLUONG = hSLUONG;
-	}
-
-	public Date getNGAYVAOLAM() {
-		return NGAYVAOLAM;
-	}
-
-	public void setNGAYVAOLAM(Date nGAYVAOLAM) {
-		NGAYVAOLAM = nGAYVAOLAM;
 	}
 
 	public String getPASSWORD() {

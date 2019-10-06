@@ -88,14 +88,9 @@ public class CanBoGiangVienService {
         	cbgv.setTEN(canbogiangvien.getTEN());
         	cbgv.setGIOITINH(canbogiangvien.getGIOITINH());
         	cbgv.setNGAYSINH(canbogiangvien.getNGAYSINH());
-        	cbgv.setNOISINH(canbogiangvien.getNOISINH());
-        	cbgv.setCMND(canbogiangvien.getCMND());
         	cbgv.setSDT(canbogiangvien.getSDT());
         	cbgv.setEMAIL(canbogiangvien.getEMAIL());
         	cbgv.setDIACHI(canbogiangvien.getDIACHI());
-        	cbgv.setLUONG(canbogiangvien.getLUONG());
-        	cbgv.setHSLUONG(canbogiangvien.getHSLUONG());
-        	cbgv.setNGAYVAOLAM(canbogiangvien.getNGAYVAOLAM());
         	cbgv.setPASSWORD(canbogiangvien.getPASSWORD());
         	cbgv.setACCOUNTTYPE(canbogiangvien.getACCOUNTTYPE());
             updatedCBGV = CanBoGiangVienRepository.save(cbgv);

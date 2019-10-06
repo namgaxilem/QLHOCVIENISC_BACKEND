@@ -12,8 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "THONGBAO")
+@JsonIgnoreProperties(value = {"tennguoidang", "tenkhoahoc"})
 public class ThongBao implements Serializable{
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -85,9 +88,9 @@ public class ThongBao implements Serializable{
 		return nql.getTEN();
 	}
 
-//	public void setNql(NguoiQuanLy nql) {
-//		this.nql = nql;
-//	}
+	public void setNql(NguoiQuanLy nql) {
+		this.nql = nql;
+	}
 	
 	public String getMakhoahoc() {
 		return makhoahoc;
@@ -101,8 +104,12 @@ public class ThongBao implements Serializable{
 		return khoahoc.getTENKHOAHOC();
 	}
 	
-//	public void setKhoahoc(KhoaHoc khoahoc) {
-//		this.khoahoc = khoahoc;
-//	}
+	public void setTenkhoahoc(String ten) {
+		this.khoahoc.setTENKHOAHOC(ten);
+	}
+	
+	public void setKhoahoc(KhoaHoc khoahoc) {
+		this.khoahoc = khoahoc;
+	}
 	
 }
