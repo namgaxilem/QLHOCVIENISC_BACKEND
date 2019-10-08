@@ -26,12 +26,6 @@ public class GopY {
 //	@JsonManagedReference
     private HocVien hocvien;
 	
-	//@ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name="NGUOINHAN", insertable=false, updatable=false)
-//	@JsonManagedReference
-    //private CanBoGiangVien canbogiangvien;
-	
-	
 	@Column(nullable = true)
 	private String NOIDUNG;
 	
@@ -40,18 +34,6 @@ public class GopY {
 	
 	@Column(nullable = true)
 	private String NGUOIGOPY;
-	
-	//@Column(nullable = true)
-	//private String NGUOINHAN;
-	
-
-	//public String getNGUOINHAN() {
-	//	return NGUOINHAN;
-	//}
-
-	//public void setNGUOINHAN(String nGUOINHAN) {
-	//	NGUOINHAN = nGUOINHAN;
-	//}
 	
 	public String getNGUOIGOPY() {
 		return NGUOIGOPY;
@@ -68,40 +50,6 @@ public class GopY {
 	public void setID(int iD) {
 		ID = iD;
 	}
-
-
-	//public String getMaHocvien() {
-	//	return hocvien.getMAHV();
-	//}
-	
-	//public void setMaHocvien(String mahocvien) {
-	//	hocvien.setMAHV(this.getMaHocvien());;
-	//}
-	
-	//public String getTenHocvien() {
-	//	return hocvien.getTEN();
-	//}
-	//public void setTenHocvien(String tenhocvien) {
-	//	hocvien.setTEN(this.getTenHocvien());;
-	//}
-	
-
-	//public HocVien getHocvien() {
-	//	return hocvien;
-	//}
-	
-	//public void setHocvien(HocVien hocvien) {
-	//	this.hocvien = hocvien;
-	//}
-
-	//public HocVien getHocvien() {
-	//	return hocvien;
-	//}
-
-	//public void setHocvien(HocVien hocvien) {
-	//	this.hocvien = hocvien;
-	//}
-
 
 	public String getNOIDUNG() {
 		return NOIDUNG;

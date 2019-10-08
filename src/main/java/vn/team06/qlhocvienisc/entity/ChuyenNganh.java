@@ -13,12 +13,25 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name = "CHUYENNGANH")
+@NamedStoredProcedureQueries({
+	   @NamedStoredProcedureQuery(name = "ChuyenNganh.sp_delete_ChuyenNganh", 
+	                              procedureName = "sp_delete_ChuyenNganh",
+	                              parameters = {
+	                                 @StoredProcedureParameter(
+	                                		 mode = ParameterMode.IN,
+	                                		 name = "macn", 
+	                                		 type = Integer.class)
+	                              })
+		})
 public class ChuyenNganh {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,15 +41,15 @@ public class ChuyenNganh {
 	@Column(nullable = true)
 	private String TENCN;
 	
-	@OneToMany(mappedBy = "chuyennganh", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "chuyennganh", 	
+			fetch = FetchType.EAGER)
     private Set<KhoaHoc> khoahoc;
 	
-
-	@ManyToMany(mappedBy="chuyennganh",fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "DAOTAO",
+    joinColumns = @JoinColumn(name = "CHUYENNGANH_ID"),
+    inverseJoinColumns = @JoinColumn(name = "MAMH_ID"))
 	private List<MonHoc> monhoc;
-	
-
-	
 
 	public List<MonHoc> getMonhoc() {
 		return monhoc;

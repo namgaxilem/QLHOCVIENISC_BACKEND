@@ -1,14 +1,19 @@
 package vn.team06.qlhocvienisc.entity;
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import antlr.collections.List;
 
 @Entity
 @Table(name = "NGUOIQUANLY")
@@ -17,31 +22,35 @@ public class NguoiQuanLy {
 	@Id 
 	@Column(nullable = false)
 	private String MANQL;
-	
+	@Column(nullable = true)
 	private String HO;
-	
+	@Column(nullable = true)
 	private String TENLOT;
-	
+	@Column(nullable = true)
 	private String TEN;
-	
+	@Column(nullable = true)
 	private String GIOITINH;
-
+	@Column(nullable = true)
 	private String EMAIL;
-	
+	@Column(nullable = true)
 	private Date NGAYSINH;	
-	
+	@Column(nullable = true)
 	private int SDT;
-	
+	@Column(nullable = true)
 	private String DIACHI;
-		
+	@Column(nullable = true)
 	private String PASSWORD;
-	
+	@Column(nullable = true)
 	private int ACCOUNTTYPE;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="ACCOUNTTYPE", insertable=false, updatable=false)
     private LoaiTaiKhoan loaitaikhoan;
-
+	
+	@OneToMany(cascade = { CascadeType.REMOVE },
+			 mappedBy = "nql")
+	private Set<ThongBao> thongbao;
+	
 	public String getMANQL() {
 		return MANQL;
 	}

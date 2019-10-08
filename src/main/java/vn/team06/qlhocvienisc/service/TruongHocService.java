@@ -52,7 +52,8 @@ public class TruongHocService {
         Optional<TruongHoc> truonghoc = truonghocRepository.findById(Id);
         if (truonghoc.isPresent()) {
         	TruongHoc hv = truonghoc.get();
-           truonghocRepository.delete(hv);
+//           truonghocRepository.delete(hv);
+           truonghocRepository.sp_delete_truonghoc(Id);
          } else {
                 throw new EntityNotFoundException();
          }

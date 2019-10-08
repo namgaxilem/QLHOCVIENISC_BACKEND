@@ -54,7 +54,8 @@ public class PhongHocService {
         Optional<PhongHoc> phonghoc = phonghocRepository.findById(id);
         if (phonghoc.isPresent()) {
            PhongHoc ph = phonghoc.get();
-           phonghocRepository.delete(ph);
+//           phonghocRepository.delete(ph);
+           phonghocRepository.sp_delete_phonghoc(id);
          } else {
                 throw new EntityNotFoundException();
          }

@@ -23,7 +23,6 @@ public class LoaiTaiKhoan {
 	@OneToMany(mappedBy = "loaitaikhoan", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private Set<HocVien> hocvien;
 
-	
 	public Set<HocVien> getHocvien() {
 		return hocvien;
 	}

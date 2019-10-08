@@ -7,11 +7,25 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "TRUONGHOC")
+@NamedStoredProcedureQueries({
+	   @NamedStoredProcedureQuery(name = "TruongHoc.sp_delete_truonghoc", 
+	                              procedureName = "sp_delete_truonghoc",
+	                              parameters = {
+	                                 @StoredProcedureParameter(
+	                                		 mode = ParameterMode.IN,
+	                                		 name = "matruong", 
+	                                		 type = String.class)
+	                              })
+		})
 public class TruongHoc {
 	@Id 
 	@Column(columnDefinition = "LONGVARBINARY")

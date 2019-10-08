@@ -30,13 +30,15 @@ public class KhoaHoc {
 	@Column(nullable = true)
 	private Date NGAYKT;
 	@Column(nullable = true)
-	private int CHUYENNGANH_ID;
+	private Integer CHUYENNGANH_ID;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="CHUYENNGANH_ID", insertable=false, updatable=false)
     private ChuyenNganh chuyennganh;
 	
-	@OneToMany(mappedBy = "khoahoc", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "khoahoc", 
+			cascade = CascadeType.REMOVE, 
+			fetch = FetchType.EAGER)
 //	@Cascade(value= {org.hibernate.annotations.CascadeType.SAVE_UPDATE, 
 //			org.hibernate.annotations.CascadeType.DELETE})
     private Set<HocVien> hocvien;
@@ -47,6 +49,13 @@ public class KhoaHoc {
 //	@Cascade(value= {org.hibernate.annotations.CascadeType.SAVE_UPDATE, 
 //			org.hibernate.annotations.CascadeType.DELETE})
     private Set<ThongBao> thongbao;
+	
+	@OneToMany(mappedBy = "khoahoc", 
+			cascade = CascadeType.REMOVE, 
+			fetch = FetchType.EAGER)
+//	@Cascade(value= {org.hibernate.annotations.CascadeType.SAVE_UPDATE, 
+//			org.hibernate.annotations.CascadeType.DELETE})
+    private Set<ThoiKhoaBieu> thoikhoabieu;
 
 	public Set<ThongBao> getThongbao() {
 		return thongbao;
@@ -56,11 +65,11 @@ public class KhoaHoc {
 		this.thongbao = thongbao;
 	}
 
-	public int getCHUYENNGANH_ID() {
+	public Integer getCHUYENNGANH_ID() {
 		return CHUYENNGANH_ID;
 	}
 
-	public void setCHUYENNGANH_ID(int cHUYENNGANH_ID) {
+	public void setCHUYENNGANH_ID(Integer cHUYENNGANH_ID) {
 		CHUYENNGANH_ID = cHUYENNGANH_ID;
 	}
 

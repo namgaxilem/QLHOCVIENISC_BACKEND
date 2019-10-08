@@ -2,18 +2,33 @@ package vn.team06.qlhocvienisc.entity;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.ParameterMode;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "CANBO_GIANGVIEN")
+@NamedStoredProcedureQueries({
+   @NamedStoredProcedureQuery(name = "CanBoGiangVien.sp_delete_giangvien", 
+                              procedureName = "sp_delete_giangvien",
+                              parameters = {
+                                 @StoredProcedureParameter(
+                                		 mode = ParameterMode.IN,
+                                		 name = "magv", 
+                                		 type = String.class)
+                              })
+	})
 public class CanBoGiangVien {
 	@Id 
 	@Column(nullable = false)
@@ -35,7 +50,7 @@ public class CanBoGiangVien {
 	private Date NGAYSINH;
 	
 	@Column(nullable = true)
-	private int SDT;
+	private Integer SDT;
 	
 	@Column(nullable = true)
 	private String EMAIL;
@@ -47,32 +62,39 @@ public class CanBoGiangVien {
 	private String PASSWORD;
 	
 	@Column(nullable = true)
-	private int ACCOUNTTYPE;
+	private Integer ACCOUNTTYPE;
 	
-	public int getACCOUNTTYPE() {
+	public Integer getACCOUNTTYPE() {
 		return ACCOUNTTYPE;
 	}
 	
-	public void setACCOUNTTYPE(int ACCOUNTTYPE) {
+	public void setACCOUNTTYPE(Integer ACCOUNTTYPE) {
 		this.ACCOUNTTYPE = ACCOUNTTYPE;
 	}
 	
-	//@ManyToOne(fetch = FetchType.EAGER)
-	//@JoinColumn(name="ACCOUNTTYPE", insertable=false, updatable=false)
-	//private LoaiTaiKhoan loaitaikhoan;
-	
-	//@OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "canbogiangvien")
-	//@Column(nullable = true)
+	@OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "cbgv")
 //	@JsonBackReference
-    //private List<GopY> gopy;
+    private List<ThoiKhoaBieu> thoikhoabieu;
+	
+	@OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "cbgv")
+//	@JsonBackReference
+    private List<DiemMonHoc> diemmonhoc;
+	
+	public List<ThoiKhoaBieu> getThoikhoabieu() {
+		return thoikhoabieu;
+	}
 
-	//public List<GopY> getGopy() {
-	//	return gopy;
-	//}
+	public void setThoikhoabieu(List<ThoiKhoaBieu> thoikhoabieu) {
+		this.thoikhoabieu = thoikhoabieu;
+	}
 
-	//public void setGopy(List<GopY> gopy) {
-	//	this.gopy = gopy;
-	//}
+	public List<DiemMonHoc> getDiemmonhoc() {
+		return diemmonhoc;
+	}
+
+	public void setDiemmonhoc(List<DiemMonHoc> diemmonhoc) {
+		this.diemmonhoc = diemmonhoc;
+	}
 	
 	public String getMACBGV() {
 		return MACBGV;
@@ -122,11 +144,11 @@ public class CanBoGiangVien {
 		NGAYSINH = nGAYSINH;
 	}
 
-	public int getSDT() {
+	public Integer getSDT() {
 		return SDT;
 	}
 
-	public void setSDT(int sDT) {
+	public void setSDT(Integer sDT) {
 		SDT = sDT;
 	}
 

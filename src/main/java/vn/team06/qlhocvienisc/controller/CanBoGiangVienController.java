@@ -1,5 +1,6 @@
 package vn.team06.qlhocvienisc.controller;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import vn.team06.qlhocvienisc.entity.CanBoGiangVien;
 import vn.team06.qlhocvienisc.service.CanBoGiangVienService;
+import vn.team06.qlhocvienisc.service.MaHoaMD5;
 
 @RestController
 public class CanBoGiangVienController {
@@ -34,8 +36,9 @@ public class CanBoGiangVienController {
     }
 	
     @RequestMapping(value = "/add_canbogiangvien", method = RequestMethod.POST)
-    public CanBoGiangVien createCanBoGiangVien(@Valid @RequestBody CanBoGiangVien canbogiangvien)
+    public CanBoGiangVien createCanBoGiangVien(@Valid @RequestBody CanBoGiangVien canbogiangvien) throws NoSuchAlgorithmException
     {
+    	canbogiangvien.setPASSWORD(MaHoaMD5.convertHashToString(canbogiangvien.getPASSWORD()));
         return CanBoGiangVienService.createCanBoGiangVien(canbogiangvien);
     }
     
@@ -46,8 +49,9 @@ public class CanBoGiangVienController {
     }
     
     @RequestMapping(value = "/update_canbogiangvien/{id}", method = RequestMethod.PUT)
-    public CanBoGiangVien updateCanBoGiangVien(@PathVariable(value = "id") String id, @Valid @RequestBody CanBoGiangVien canbogiangvien) 
+    public CanBoGiangVien updateCanBoGiangVien(@PathVariable(value = "id") String id, @Valid @RequestBody CanBoGiangVien canbogiangvien) throws NoSuchAlgorithmException 
     {
+    	canbogiangvien.setPASSWORD(MaHoaMD5.convertHashToString(canbogiangvien.getPASSWORD()));
         return CanBoGiangVienService.updateCanBoGiangVien(id, canbogiangvien);
     }
     

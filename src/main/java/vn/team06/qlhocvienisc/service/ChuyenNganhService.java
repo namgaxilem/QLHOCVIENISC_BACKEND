@@ -49,7 +49,8 @@ public class ChuyenNganhService {
         Optional<ChuyenNganh> chuyennganh = chuyennganhRepository.findById(Id);
         if (chuyennganh.isPresent()) {
         	ChuyenNganh cn = chuyennganh.get();
-        	chuyennganhRepository.delete(cn);
+//        	chuyennganhRepository.delete(cn);
+        	chuyennganhRepository.sp_delete_chuyennganh(Id);
          } else {
                 throw new EntityNotFoundException();
          }

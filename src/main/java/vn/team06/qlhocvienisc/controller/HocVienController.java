@@ -1,5 +1,6 @@
 package vn.team06.qlhocvienisc.controller;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import vn.team06.qlhocvienisc.entity.HocVien;
 import vn.team06.qlhocvienisc.service.HocVienService;
+import vn.team06.qlhocvienisc.service.MaHoaMD5;
 
 @RestController
 public class HocVienController {
@@ -36,8 +38,9 @@ public class HocVienController {
     		method = RequestMethod.POST,
     		produces = { MediaType.APPLICATION_JSON_VALUE,
 					MediaType.APPLICATION_XML_VALUE })
-    public boolean createHocvien(@Valid @RequestBody HocVien hocvien)
+    public boolean createHocvien(@Valid @RequestBody HocVien hocvien) throws NoSuchAlgorithmException
     {
+    	hocvien.setPASSWORD(MaHoaMD5.convertHashToString(hocvien.getPASSWORD()));
     	hocvienService.createHocvien(hocvien);
         return true;
     }
@@ -49,8 +52,9 @@ public class HocVienController {
     }
  
     @RequestMapping(value = "/hocvien/{id}", method = RequestMethod.PUT)
-    public HocVien updateHocvien(@PathVariable(value = "id") String id, @Valid @RequestBody HocVien hocvien) 
+    public HocVien updateHocvien(@PathVariable(value = "id") String id, @Valid @RequestBody HocVien hocvien) throws NoSuchAlgorithmException 
     {
+    	hocvien.setPASSWORD(MaHoaMD5.convertHashToString(hocvien.getPASSWORD()));
         return hocvienService.updateHocvien(id, hocvien);
     }
     
