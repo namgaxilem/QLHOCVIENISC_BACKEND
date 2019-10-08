@@ -1,6 +1,5 @@
 package vn.team06.qlhocvienisc.controller;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import vn.team06.qlhocvienisc.entity.NguoiQuanLy;
-import vn.team06.qlhocvienisc.service.MaHoaMD5;
 import vn.team06.qlhocvienisc.service.NguoiQuanLyService;
 
 
@@ -33,9 +31,8 @@ public class NguoiQuanLyController {
     }
  
     @RequestMapping(value = "/createnguoiquanly", method = RequestMethod.POST)
-    public NguoiQuanLy createNguoiQuanly(@Valid @RequestBody NguoiQuanLy nguoiquanly) throws NoSuchAlgorithmException
+    public NguoiQuanLy createNguoiQuanly(@Valid @RequestBody NguoiQuanLy nguoiquanly)
     {
-    	nguoiquanly.setPASSWORD(MaHoaMD5.convertHashToString(nguoiquanly.getPASSWORD()));
         return nguoiquanlyService.createNguoiQuanLy(nguoiquanly);
     }
  
@@ -46,9 +43,8 @@ public class NguoiQuanLyController {
     }
  
     @RequestMapping(value = "/updatenguoiquanly/{id}", method = RequestMethod.PUT)
-    public NguoiQuanLy updateNguoiQuanLy(@PathVariable(value = "id") String id, @Valid @RequestBody NguoiQuanLy nguoiquanly) throws NoSuchAlgorithmException 
+    public NguoiQuanLy updateNguoiQuanLy(@PathVariable(value = "id") String id, @Valid @RequestBody NguoiQuanLy nguoiquanly) 
     {
-    	nguoiquanly.setPASSWORD(MaHoaMD5.convertHashToString(nguoiquanly.getPASSWORD()));
         return nguoiquanlyService.updateNguoiQuanLy(id, nguoiquanly);
     }
     

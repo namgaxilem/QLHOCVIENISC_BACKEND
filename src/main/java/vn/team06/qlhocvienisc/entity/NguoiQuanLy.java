@@ -35,7 +35,7 @@ public class NguoiQuanLy {
 	@Column(nullable = true)
 	private Date NGAYSINH;	
 	@Column(nullable = true)
-	private int SDT;
+	private Integer SDT;
 	@Column(nullable = true)
 	private String DIACHI;
 	@Column(nullable = true)
@@ -107,11 +107,11 @@ public class NguoiQuanLy {
 		NGAYSINH = nGAYSINH;
 	}
 
-	public int getSDT() {
+	public Integer getSDT() {
 		return SDT;
 	}
 
-	public void setSDT(int sDT) {
+	public void setSDT(Integer sDT) {
 		SDT = sDT;
 	}
 

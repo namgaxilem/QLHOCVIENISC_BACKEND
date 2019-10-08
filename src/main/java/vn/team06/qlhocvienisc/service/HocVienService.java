@@ -1,4 +1,5 @@
 package vn.team06.qlhocvienisc.service;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,13 +22,17 @@ public class HocVienService {
 	@Autowired
 	HocVienRepository hocvienRepository;
  
-       
-        
     public List<HocVien> getAll() {
         return (List<HocVien>) hocvienRepository.findAll();
     }
      
     public HocVien createHocvien(HocVien hocvien) {
+    	try {
+			hocvien.setPASSWORD(MaHoaMD5.convertHashToString(hocvien.getPASSWORD()));
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return hocvienRepository.save(hocvien);
     }
      
@@ -45,7 +50,12 @@ public class HocVienService {
             sv.setSDT(hocvien.getSDT());
             sv.setEMAIL(hocvien.getEMAIL());
             sv.setDIACHI(hocvien.getDIACHI());
-            sv.setPASSWORD(hocvien.getPASSWORD());
+            try {
+				sv.setPASSWORD(MaHoaMD5.convertHashToString(hocvien.getPASSWORD()));
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             sv.setMATRUONG(hocvien.getMATRUONG());
             sv.setACCOUNTTYPE(hocvien.getACCOUNTTYPE());
             sv.setMAKHOAHOC(hocvien.getMAKHOAHOC());

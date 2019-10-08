@@ -28,6 +28,7 @@ import vn.team06.qlhocvienisc.service.MaHoaMD5;
 public class HocVienController {
 	@Autowired
 	HocVienService hocvienService;
+	
 	@RequestMapping(value = "/hocvien",
 			method = RequestMethod.GET)
     public List<HocVien> hocvien() {
@@ -38,9 +39,8 @@ public class HocVienController {
     		method = RequestMethod.POST,
     		produces = { MediaType.APPLICATION_JSON_VALUE,
 					MediaType.APPLICATION_XML_VALUE })
-    public boolean createHocvien(@Valid @RequestBody HocVien hocvien) throws NoSuchAlgorithmException
+    public boolean createHocvien(@Valid @RequestBody HocVien hocvien)
     {
-    	hocvien.setPASSWORD(MaHoaMD5.convertHashToString(hocvien.getPASSWORD()));
     	hocvienService.createHocvien(hocvien);
         return true;
     }
@@ -52,9 +52,8 @@ public class HocVienController {
     }
  
     @RequestMapping(value = "/hocvien/{id}", method = RequestMethod.PUT)
-    public HocVien updateHocvien(@PathVariable(value = "id") String id, @Valid @RequestBody HocVien hocvien) throws NoSuchAlgorithmException 
+    public HocVien updateHocvien(@PathVariable(value = "id") String id, @Valid @RequestBody HocVien hocvien) 
     {
-    	hocvien.setPASSWORD(MaHoaMD5.convertHashToString(hocvien.getPASSWORD()));
         return hocvienService.updateHocvien(id, hocvien);
     }
     

@@ -1,5 +1,6 @@
 package vn.team06.qlhocvienisc.service;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +29,12 @@ public class NguoiQuanLyService {
     }
      
     public NguoiQuanLy createNguoiQuanLy(NguoiQuanLy nguoiquanly) {
+    	try {
+			nguoiquanly.setPASSWORD(MaHoaMD5.convertHashToString(nguoiquanly.getPASSWORD()));
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return nguoiquanlyRepository.save(nguoiquanly);
     }
      
@@ -46,7 +53,12 @@ public class NguoiQuanLyService {
             nql.setSDT(nguoiquanly.getSDT());
             nql.setEMAIL(nguoiquanly.getEMAIL());
             nql.setDIACHI(nguoiquanly.getDIACHI());
-            nql.setPASSWORD(nguoiquanly.getPASSWORD());
+            try {
+				nql.setPASSWORD(MaHoaMD5.convertHashToString(nguoiquanly.getPASSWORD()));
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             nql.setACCOUNTTYPE(nguoiquanly.getACCOUNTTYPE());
             updatedNQL = nguoiquanlyRepository.save(nql);
          } else {

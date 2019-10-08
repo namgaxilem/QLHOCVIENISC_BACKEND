@@ -36,9 +36,8 @@ public class CanBoGiangVienController {
     }
 	
     @RequestMapping(value = "/add_canbogiangvien", method = RequestMethod.POST)
-    public CanBoGiangVien createCanBoGiangVien(@Valid @RequestBody CanBoGiangVien canbogiangvien) throws NoSuchAlgorithmException
+    public CanBoGiangVien createCanBoGiangVien(@Valid @RequestBody CanBoGiangVien canbogiangvien)
     {
-    	canbogiangvien.setPASSWORD(MaHoaMD5.convertHashToString(canbogiangvien.getPASSWORD()));
         return CanBoGiangVienService.createCanBoGiangVien(canbogiangvien);
     }
     
@@ -49,9 +48,8 @@ public class CanBoGiangVienController {
     }
     
     @RequestMapping(value = "/update_canbogiangvien/{id}", method = RequestMethod.PUT)
-    public CanBoGiangVien updateCanBoGiangVien(@PathVariable(value = "id") String id, @Valid @RequestBody CanBoGiangVien canbogiangvien) throws NoSuchAlgorithmException 
+    public CanBoGiangVien updateCanBoGiangVien(@PathVariable(value = "id") String id, @Valid @RequestBody CanBoGiangVien canbogiangvien) 
     {
-    	canbogiangvien.setPASSWORD(MaHoaMD5.convertHashToString(canbogiangvien.getPASSWORD()));
         return CanBoGiangVienService.updateCanBoGiangVien(id, canbogiangvien);
     }
     

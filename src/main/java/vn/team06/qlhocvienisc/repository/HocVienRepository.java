@@ -14,4 +14,10 @@ import vn.team06.qlhocvienisc.entity.HocVien;;
 public interface HocVienRepository extends JpaRepository<HocVien, String>{
 	@Query(value = "select hv from HocVien hv where hv.MAKHOAHOC=:MAKHOAHOC")
     Page<HocVien> findCourse(@Param("MAKHOAHOC") String makhoahoc, Pageable pageable);
+	
+	@Query(value = "select hv from HocVien hv where hv.MAHV=:MAHV and hv.PASSWORD=:PASSWORD")
+    Page<HocVien> timhocvienTheoUsernameVaPassword(
+    		@Param("MAHV") String mahv,
+    		@Param("PASSWORD") String password,
+    		Pageable pageable);
 }

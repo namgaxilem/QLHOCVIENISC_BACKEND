@@ -1,5 +1,6 @@
 package vn.team06.qlhocvienisc.service;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +35,12 @@ public class CanBoGiangVienService {
 	}
 
 	public CanBoGiangVien createCanBoGiangVien(CanBoGiangVien canbogiangvien) {
+		try {
+			canbogiangvien.setPASSWORD(MaHoaMD5.convertHashToString(canbogiangvien.getPASSWORD()));
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return canBoGiangVienRepository.save(canbogiangvien);
 	}
 
@@ -103,7 +110,12 @@ public class CanBoGiangVienService {
 			cbgv.setSDT(canbogiangvien.getSDT());
 			cbgv.setEMAIL(canbogiangvien.getEMAIL());
 			cbgv.setDIACHI(canbogiangvien.getDIACHI());
-			cbgv.setPASSWORD(canbogiangvien.getPASSWORD());
+			try {
+				cbgv.setPASSWORD(MaHoaMD5.convertHashToString(canbogiangvien.getPASSWORD()));
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			cbgv.setACCOUNTTYPE(canbogiangvien.getACCOUNTTYPE());
 			updatedCBGV = canBoGiangVienRepository.save(cbgv);
 		} else {
